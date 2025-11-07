@@ -21,6 +21,13 @@ export default function Login({
     if (isLoggedIn) navigate(redirectTo, { replace: true });
   }, [isLoggedIn, navigate, redirectTo]);
 
+  // Limpiar los campos al cargar el componente
+    useEffect(() => {
+      setEmail("");
+    setPassword("");
+  }, []);
+
+
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
@@ -64,7 +71,7 @@ export default function Login({
           placeholder="name@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
+          required autoComplete="off"
         />
 
         <label htmlFor="password">Password</label>
@@ -75,7 +82,7 @@ export default function Login({
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+            required autoComplete="new-password"
           />
           <button
             type="button"
